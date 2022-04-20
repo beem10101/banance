@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from binance import Client,ThreadedWebsocketManager
 from pprint import pprint
 import os
+import socket
 load_dotenv()
 input1 = str(input())
 input2 = str(input())
@@ -17,12 +18,14 @@ info = client.get_account()
 
 price = client.get_all_tickers()
 # pprint(price)
-for i in price :
-    if i['symbol'] == n.upper():
-        print(i['price'])
-        break
-else:
-    print(n,'not found')
+def Search(x) :
+    for i in price :
+        if i['symbol'] == x.upper():
+            return i['price']
+    else:
+        return 'not found'
+print(Search(n))
+
 
 # bal = info['balances']
 # for i in bal :
